@@ -1,4 +1,8 @@
+class: middle center
 # Basics of React
+
+---
+# Before React
 
 - ES6
 - JSX
@@ -6,7 +10,28 @@
 ---
 
 # ES6
-## `class`
+## Const and let
+```js
+const pi = 3.1415;
+pi = 2; // throw exception
+
+let x = 1;
+var y = 1;
+if (true) {
+  let x = 2;
+  var y = 2;
+  console.log('x in if:' + x);
+  console.log('y in if:' + y);
+}
+
+console.log('x out if:' + x);
+console.log('y out if:' + y);
+
+```
+
+---
+# ES6
+## class
 ```js
 class Person {
   say() {
@@ -24,13 +49,28 @@ class MyComponent extends React.Component {
   }
 }
 ```
-
 ---
 # ES6
 ## Arrow Function
 ```js
 const double = x => x * 2
+const double = function(x) {
+  return x * 2;
+}
+
 const add = (a, b) => a + b
+const add = function(a, b) {
+  return a + b;
+}
+
+const increase = x => {
+  x++;
+  return x;
+}
+const increase = function(x) {
+  x++;
+  return x;
+}
 
 ```
 
@@ -62,58 +102,17 @@ const onClickWithContext = onClick.bind(other)
 
 ```
 ---
-layout: true
-
-# ES6
-## Destructing/Spread/Rest
-
-```js
-const user = {
-  id: 0,
-  favor: ['Game', 'Car'],
-  products: { Car: [], Game: [] }
-}
-
-```
----
-### Destructing
-```js
-const { favor, products } = user
-// favor === ['Game', 'Car']
-// products === { Car: [], Game: [] }
-```
----
-
-### Spread
-
-```js
-const sam = {
-  ...user,
-  id: 1,
-  favor: ['Sports']
-}
-// const sam = {
-//   id: 1,
-//   favor: ['Sports'],
-//   products: { Car: [], Game: [] }
-// }
-```
-
----
-### Rest
-```js
-const { id, ...rest } = user
-const tom = {
-  id: id + 1,
-  ...rest
-}
-```
----
 layout: false
 
 # JSX
-## - Javascript Syntax for XML
-```js
+## Javascript Syntax for XML
+```jsx
+<div>Hello world</div>
+
+<div className="my-class" id={getId()} style={{color: 'red'， fontSize: 20}}>
+  {getMessage()}
+</div>
+
 class MyComponent extends React.Component {
   getHeader() {
     return <div>Header</div>
@@ -123,478 +122,245 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+- Use {} for js code
+- class -> className
+- use object for style
+
 ---
 class: middle center
 
-# Questions for ES6 and JSX ?
-
-https://github.com/LeiZeng/react-workshop
-
-`cd workshops/01-basics && yarn && yarn start`
-???
-virtual DOM + Hyperscript vs React
----
-# OOP ? FP
-
-```js
-class MyComponent extends React.Component {
-  render() {
-    return <div>Hello</div>
-  }
-}
-const MyComponent = (props) => <div>Hello</div>
-
-```
-???
-1. React vs FRP
-2. class first
+# Questions?
 
 ---
 
-# When should we use Component?
-- State
-- Lifecycle
+# Stepup
+## Clone the sample code from github and start the server
 
+- `git clone git@github.com:SBeator/react-workshop.git`
+- `cd workshops/01-basics`
+- `npm install`
+- `npm start`
+- Open http://localhost:3000/ in browser
+
+## Copy code with node_nodules
+- Copy code from xxxx
+- `npm start`
+- Open http://localhost:3000/ in browser
+
+---
+# Hello world
+## Component
 ```js
-class MyComponent extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      target: 'loading'
-    }
-  }
-  componentDidMount() {
-    this.setState({
-      target: 'loaded'
-    })
-  }
+class HellWorld extends Component {
   render() {
-    return <div>State: {this.state.target}</div>
+      return (<div>
+          Hello world!
+        </div>);
   }
 }
 ```
+http://localhost:3000/hello-world-component
+
+## Pure function
+```js
+const HellWorld = (props) => <div>Hello world!</div>;
+```
+http://localhost:3000/hello-world-purefunction
 
 ---
-
-# **Pure Function** is always preferred
-
-- Static styled components
-- Self managed components
-- Event Driven components
-
+# Props
+## The properties for the component
 ```js
-const MyComponent = props => <div className="header-titile">Hello</div>
+const Text = (props) => <p style={{ color: props.color }}>Text: {props.children}</p>;
 
-const Toggle = props => (
-  <span
-    onClick={props.onClick && (evt) => props.onClick(evt)}
-  >
-    {props.children}
-  </span>
+const ColorfulTexts = (props) => (
+  <div>
+      <Text color="red">Red text</Text>
+      <Text color="green">Green text</Text>
+      <Text color="orange" children="Orange text"></Text>
+      <p>Normal text</p>
+      <p style={{color: 'grey'}}>Grey normal text</p>
+  </div>
 )
-Toggle.displayName = 'Radio'
-Toggle.propTypes = { ... }
-
 ```
-???
-FP
-Performance
----
-# Practice for Basics
-1. A Text input component pass all the passible events to DOM
-```js
-<Text onClick={evt => console.log(evt)} />
-<Text onFocus={evt => console.log(evt)} />
-<Text onChange={evt => console.log(evt)} />
-...
-```
-3. List Component from an object
-```js
-const data = { a: 'a', b: 'b', c: 'c' }
-const result = <Component data={data} />
-// <ul><li>a:a</li><li>b:b</li><li>c:c</li></ul>
-```
----
-layout: true
-
-# Lifecycle
+http://localhost:3000/colorful-text
+- Readonly
+- Have to be passed from parent
 
 ---
-## Initialization
-- constructor
-  - getDefaultProps
-  - getInitialState
-- componentWillMount
-- render
-- componentDidMount
+# Practice
+## Try create a "User" component from this template
 
 ```js
-componentWillMount()
-componentDidMount()
+const User = (props) => <p>...</p>;
+
+const UserList = (props) => (
+  <div>
+    <User /> // Xingxin, 25
+    <User /> // Stef, 18
+    <User /> // Ben, 30
+  </div>
+)
+
+export default UserList
 ```
-## Unmount
-- componentWillUnmount
-
----
-## Updating
-- componentWillReceiveProps
-
-  > state changes should never trigger any props changes.
-- shouldComponentUpdate
-- componentWillUpdate
-- render
-- componentDidUpdate
-
-```js
-componentWillReceiveProps(nextProps) {
-  setState({})
-}
-
+Make sure the output are 3 users like this:
+```html
+I am Xingxin, I am 25 year old
+I am Stef, I am 18 year old
+I am Ben, I am 30 year old
 ```
-```js
-shouldComponentUpdate(nextProps, nextState) {}
-```
----
-layout: true
-# State vs Props
----
+Start:
+http://localhost:3000/user
 
-## State
-  - Changeable
-  - Local value have to be self managed
-
-## Props
-  - Readonly
-  - PropType Check
-  - Have to be passed from parent
+Example:
+http://localhost:3000/user-final 
 ---
 
-## A case to use state
+# Props in component
 
+Use `this.props` to refer the props
 ```js
 class Text extends Component {
+  render() {
+    return <p style={{ color: this.props.color }}>Text: {this.props.children}</p>
+  }
+}
+```
+http://localhost:3000/colorful-text-component
+
+The same with the pure function one:  
+http://localhost:3000/colorful-text
+---
+
+# State
+
+```js
+class Counter extends Component {
   constructor() {
     super()
     this.state = {
-      value: ''
+      count: 0
     }
+
+    setInterval(() => {
+      let newCount = this.state.count + 1;
+      this.setState({
+        count: newCount
+      })
+    }, 1000);
   }
+
   render() {
-    return (
-      <div>
-        <input type="text" onChange={evt => this.setState({
-            value: evt.target.value
-          })}
-        />
-        <span>You have input: {this.state.value}</span>
-      </div>
-    )
+    return <div>Count: {this.state.count}</div>
   }
 }
 ```
 
----
-layout: false
+http://localhost:3000/counter-timer
 
-# Practice for State vs Props
-1. Create a DropDown component:
- - Show a clickable button
- - When clicked, show a dropdown
- - Toggle the dropdown list when click again
+- Initial state in constructor
+- Use `this.setState()` to change state
+
+---
+# Event
 
 ```js
-import DropDown from './DropDown'
-
-const dropdownList = (
-  <ul>
-    <li>a</li>
-    <li>b</li>
-    <li>c</li>
-  </ul>
-)
-const MyDropDown = <DropDown dropdown={dropdownList}>Click Me</DropDown>
-
-```
----
-layout: true
-
-#DOM vs JSX
-
----
-
-## Javascript Syntax with XML
-- Variables/Function in HTML
-- Operate HTML as variable/component
-
----
-## DOM with Javascript
-
-- DOM based operation
-- Context first
-- DOM as single source of truth *
-
-```html
-<script type="text/javascript">
-  function onChange(event) {
-    console.log(event);
-    console.log(this.value);
-  }
-</script>
-<input type="text" name="input" value="" onChange="onChange">
-```
-
----
-
-## DOM with jQuery
-
-- jQuery object based operation
-- jQuery as namespace
-- DOM as single source of truth *
-
-```html
-<input type="text" id="input" value="">
-<script type="text/javascript">
-  $('#id').on('change', function (event) {
-    console.log(event);
-    console.log($(this).val());
-  })
-</script>
-```
----
-
-## JSX
-
-- Component based operation
-- Modules/Packages
-- Props data as single source of truth
-
-```js
-(props) => (
-  <input type="text" name="input" value="input" onChange={event => {
-    console.log(event)
-    console.log(event.target.value)
-  }}>
-)
-```
----
-
-## Component based
-```js
-const Button = ({
-  children,
-  ...others
-}) => <span {...others}>{children}</span>
-
-const Icon = props => (
-  <i className={`icon icon-${props.name}`}>{props.children}</i>
-)
-
-const IconButton = ({
-  children,
-  icon,
-  ...others
-}) => (
-  <Button {...others}>
-    <Icon name="home"/>
-    {children}
-  </Button>
-)
-```
----
-layout: false
-
-# Practice for DOM vs JSX
-
-1. Create Flow component as in UML Graph
-
-  ```js
-  import Flow from './Flow'
-
-  const FirstFlow = <Flow condition={true} yes={'yes'} no={'no'}/>
-  ```
-
-2. Implement following Appointment UML Graph with Flow and basic types
-  ```js
-  <Appointment isAHuman={true} isBooked={false} /> // Conference
-  <Appointment isAHuman={false} isBooked={false} /> // You'r not a Human!
-  <Appointment isAHuman={true} isBooked={true} /> // Back to Book it.
-  ```
-
-  ```ruby
-   [Appointment]
-        |
-    <Is a Human>--------No-------> [You'r not a Human!]                           
-        |                                   |
-       Yes                                  |
-        |                                   |
-    <Is Booked?>-Yes-> [Back to Book it.]   |
-        |                            \      |
-        No                            \     |
-        |                              \    |
-    [Conference]                       [Reject]
-  ```
-
----
-layout: true
-class: middle
-
-# Form
----
-
-- Dynamic user inputs
-- Shared data
-
-
-```html
-<form action="post">
-  <label>User Name<input type="text" name="username" /></label>
-  <label>Email<input type="text" name="email" /></label>
-  <fieldset>
-    <label>
-      I have a child:
-      <input type="radio" name="have_child" value="yes"/>
-    </label>
-    <label>
-      I don't have a child:
-      <input type="radio" name="have_child" value="no" />
-    </label>
-  </fieldset>
-  <select name="gander_of_child">
-    <option value="boy">boy</option>
-    <option value="girl">girl</option>
-  </select>
-  <input type="submit" value="submit"/>
-</form>
-```
-???
-- In PHP, Form is very easy to submit data
-- Now days UX requires much more in a single form, leading, validation, show/hide, steps
-- In React, it becomes difficult because of the state/props
----
-
-## Fields
-
-```js
-const Text = props => <input type="text" {...props}/>
-
-const Select = ({options, ...others}) => (
-  <select {...others}>
-    {Object.keys(options)
-      .map((optionKey, index) => (
-        <option value={optionKey} key={index}>{options[optionKey]}</option>
-      ))
+class Counter extends Component {
+  constructor() {
+    super()
+    this.state = {
+      count: 0
     }
-  </select>
-)
-```
-???
-simple input vs complex select
----
 
-## DOM Operation
-
-```js
-class Input extends Component {
-  _onChange(event) {
-    console.log(findDOM(this.refs.input), this.props);
+    this.handleClick = this.handleClick.bind(this)
   }
+
+  handleClick() {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+
   render() {
-    return (
-      <input ref="input" type="text" {...this.props} >
-    )
+    return <button onClick={this.handleClick}>Count: {this.state.count}</button>
   }
 }
 ```
+http://localhost:3000/counter-click
+
+- Bind `this` for the event handler
+- Refer this page for all events:https://facebook.github.io/react/docs/events.html 
+
 ---
+# An example to combine these features
 
-## DOM without Operation
+http://localhost:3000/counter-buttons
 
-
-```js
-class Input extends Component {
-  _onChange(event) {
-    console.log(findDOM(this.refs.input), this.props);
-  }
-  render() {
-    return (
-      <input ref="input" type="text" {...this.props} >
-    )
-  }
-}
-```
-```js
-const Input = props => (
-  <input
-    type="text"
-    {...props}
-    onChange={event => {
-      console.log(event.target, props);
-    }}
-  />
-)
-```
 ---
+# Pratice
+## Number controllers
+- Show a number (default is 0)
+- Four buttons to control the number
+  - Click to increase by 1
+  - Click to decrease by 1
+  - Click to double the number
+  - Click to reset to 0
 
-## Event Driven Operation
 
-```js
-const Input = props => (
-  <input
-    type="text"
-    {...props}
-    onChange={event => {
-      props.onChange && props.onChange(event.target.value)
-    }}
-  />
-)
-const Text = props => <Input onChange={value => console.log(value)} />
-```
+Start: 
+http://localhost:3000/number-controller
+
+
+Example:
+http://localhost:3000/number-controller-final
 ---
+# Lifecycle
 
-layout: false
-# Practice for Form
-## Create a Form with following requirements:
-1. Email validation(required and with @)
-2. Hide child gander and show while has child
-3. Capture submit action and add onSubmit event
+##Mounting
+These methods are called when an instance of a component is being created and inserted into the DOM:
 
-```html
-<form action="post">
-  <label>User Name<input type="text" name="username" /></label>
-  <label>Email<input type="text" name="email" /></label>
-  <fieldset>
-    <label>
-      I have a child:<input type="radio" name="have_child" value="yes"/>
-    </label>
-    <label>
-      I don't have a child:<input type="radio" name="have_child" value="no" />
-    </label>
-  </fieldset>
-  <select name="gander_of_child">
-    <option value="boy">boy</option>
-    <option value="girl">girl</option>
-  </select>
-  <input type="submit" value="submit"/>
-</form>
-```
+- constructor()
+- componentWillMount()
+- render()
+- componentDidMount()
+
+##Unmounting
+This method is called when a component is being removed from the DOM:
+
+- componentWillUnmount()
+
+http://localhost:3000/lifecyle
+
+---
+# Lifecycle
+
+##Updating
+An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
+
+- componentWillReceiveProps()
+- shouldComponentUpdate()
+- componentWillUpdate()
+- render()
+- componentDidUpdate()
+
+## Reference
+https://facebook.github.io/react/docs/react-component.html
+
 ---
 class: center middle
+# Questions
 
-# Thinking in React
-https://facebook.github.io/react/docs/thinking-in-react.html
 ---
-class: center
-
 # Homework
 
 ## Implement a TodoMVC
-.left[
-- No style required
-- State allowed
-]
-
-.left[
-- No DOM operation
 - Pure React
-- Time count down from first line
-]
+  - State
+  - Props
+  - Event
+- No style required
+- No DOM operation
+
+http://todomvc.com/
