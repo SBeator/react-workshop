@@ -1,86 +1,20 @@
-import { Component } from 'react'
+import Link from 'next/link'
 
-const Text = props => (
-  <input
-    type="text"
-    {...props}
-    onChange={event => {
-      props.onChange && props.onChange(event.target.value)
-    }}
-  />
+// example header component
+export default () => (
+    <ul>
+      <li><Link prefetch href='/'><a>index</a></Link></li>
+      <li><Link prefetch href='colorful-text-component'><a>colorful-text-component</a></Link></li>
+      <li><Link prefetch href='colorful-text'><a>colorful-text</a></Link></li>
+      <li><Link prefetch href='counter-buttons'><a>counter-buttons</a></Link></li>
+      <li><Link prefetch href='counter-click'><a>counter-click</a></Link></li>
+      <li><Link prefetch href='counter-timer'><a>counter-timer</a></Link></li>
+      <li><Link prefetch href='hello-world-component'><a>hello-world-component</a></Link></li>
+      <li><Link prefetch href='hello-world-purefunction'><a>hello-world-purefunction</a></Link></li>
+      <li><Link prefetch href='lifecyle'><a>lifecyle</a></Link></li>
+      <li><Link prefetch href='number-controller-final'><a>number-controller-final</a></Link></li>
+      <li><Link prefetch href='number-controller'><a>number-controller</a></Link></li>
+      <li><Link prefetch href='user-final'><a>user-final</a></Link></li>
+      <li><Link prefetch href='user'><a>user</a></Link></li>
+    </ul>
 )
-const LabelText = ({label, onChange, ...props}) => (
-  <label>{label}<Text {...props}/></label>
-)
-const RadioGroup = ({ options, onChange, ...others }) => (
-  <fieldset>
-    {options.map(({ label, ...rest }, key) => (
-      <label key={key}>
-        {label}
-        <input type="radio" {...rest} onChange={
-          evt => onChange && onChange(evt.target.value)
-        } />
-      </label>))}
-  </fieldset>
-)
-
-const Select = ({options, ...others}) => (
-  <select {...others}>
-    {Object.keys(options)
-      .map((optionKey, index) => (
-        <option value={optionKey} key={index}>{options[optionKey]}</option>
-      ))
-    }
-  </select>
-)
-export default class IndexPage extends Component {
-  constructor() {
-    super()
-    this.state = {
-      show: false
-    }
-  }
-  render() {
-      return (
-      <div>
-        Hello React!
-        <div>
-          <form action="POST" onSubmit={
-            value => console.log(value)
-          }>
-            <LabelText label="User Name" onChange={
-              value => console.log(value)
-            }/>
-            <LabelText label="Email" onChange={
-              value => console.log(value)
-            }/>
-            <RadioGroup options={[
-              {
-                label: 'I have a child',
-                value: 'yes',
-                name: 'have_child'
-              },{
-                label: 'I don\'t have a child',
-                value: 'no',
-                name: 'have_child'
-              }
-            ]}
-            onChange={value => {
-              console.log(value);
-              this.setState({
-                show: value === 'yes'
-              })
-            }}
-          />
-            {this.state.show ? (<Select options={
-              {
-                boy: 'boy',
-                girl: 'girl'
-              }
-            } />) : null}
-          </form>
-        </div>
-      </div>
-    )
-  }
-}
