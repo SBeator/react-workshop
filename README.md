@@ -1,7 +1,7 @@
 # React Workshops Slides
 
 ## Serve slides
-`yarn && yarn start`
+`npm install && npm start`
 
 - React Basics
 ...
