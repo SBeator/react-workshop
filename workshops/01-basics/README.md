@@ -308,13 +308,20 @@ http://localhost:3000/counter-buttons
   - Click to double the number
   - Click to reset to 0
 
-
 Start: 
 http://localhost:3000/number-controller
 
-
 Example:
 http://localhost:3000/number-controller-final
+---
+# Array in elements
+
+- Array of JSX element can be used in JSX
+- Add "key" attribute for array element
+
+http://localhost:3000/user-final-array  
+http://localhost:3000/counter-buttons-array
+
 ---
 # Lifecycle
 
