@@ -1,20 +1,28 @@
 import Link from 'next/link'
 
-// example header component
-export default () => (
-    <ul>
-      <li><Link prefetch href='/'><a>index</a></Link></li>
-      <li><Link prefetch href='colorful-text-component'><a>colorful-text-component</a></Link></li>
-      <li><Link prefetch href='colorful-text'><a>colorful-text</a></Link></li>
-      <li><Link prefetch href='counter-buttons'><a>counter-buttons</a></Link></li>
-      <li><Link prefetch href='counter-click'><a>counter-click</a></Link></li>
-      <li><Link prefetch href='counter-timer'><a>counter-timer</a></Link></li>
-      <li><Link prefetch href='hello-world-component'><a>hello-world-component</a></Link></li>
-      <li><Link prefetch href='hello-world-purefunction'><a>hello-world-purefunction</a></Link></li>
-      <li><Link prefetch href='lifecyle'><a>lifecyle</a></Link></li>
-      <li><Link prefetch href='number-controller-final'><a>number-controller-final</a></Link></li>
-      <li><Link prefetch href='number-controller'><a>number-controller</a></Link></li>
-      <li><Link prefetch href='user-final'><a>user-final</a></Link></li>
-      <li><Link prefetch href='user'><a>user</a></Link></li>
-    </ul>
-)
+const NavLink = ({ page }) => <li><Link prefetch href={page}><a>{page}</a></Link></li>
+
+let pages = [
+  'index',
+  'colorful-text-component',
+  'colorful-text',
+  'counter-buttons-array',
+  'counter-buttons',
+  'counter-click',
+  'counter-timer',
+  'hello-world-component',
+  'hello-world-purefunction',
+  'input-refer',
+  'lifecyle',
+  'number-controller-final',
+  'number-controller',
+  'user-final-array',
+  'user-final',
+  'user',
+  ]
+  
+  export default () => (
+      <ul>
+        {pages.map((page) => <NavLink page={page} />) }
+      </ul>
+  )
