@@ -20,12 +20,12 @@ var y = 1;
 if (true) {
   let x = 2;
   var y = 2;
-  console.log('x in if:' + x);
-  console.log('y in if:' + y);
+  console.log('x in if:' + x); // x in if:2
+  console.log('y in if:' + y); // y in if:2
 }
 
-console.log('x out if:' + x);
-console.log('y out if:' + y);
+console.log('x out if:' + x); // x out if:1
+console.log('y out if:' + y); // y out if:2
 
 ```
 
@@ -75,33 +75,6 @@ const increase = function(x) {
 ```
 
 ---
-
-# ES6
-## Arrow Function
-```js
-const onClick = function(evt) {
-  console.log(this);
-}
-
-```
-
-```js
-const onClick = (evt) => {
-  console.log(this);
-}
-// this === global
-
-```
-
-```js
-const onClick = (evt) => {
-  console.log(this);
-}
-const onClickWithContext = onClick.bind(other)
-// this === global
-
-```
----
 layout: false
 
 # JSX
@@ -141,12 +114,15 @@ class: middle center
 - `cd workshops/01-basics`
 - `npm install`
 - `npm start`
-- Open http://localhost:3000/ in browser
+- Open http://localhost:3000/ in browser to see the list of examples
 
 ## Copy code with node_nodules
+
 - Copy code from xxxx
+- unzip it
+- `cd workshops/01-basics`
 - `npm start`
-- Open http://localhost:3000/ in browser
+- Open http://localhost:3000/ in browser to see the list of examples
 
 ---
 # Hello world
@@ -154,9 +130,7 @@ class: middle center
 ```js
 class HellWorld extends Component {
   render() {
-      return (<div>
-          Hello world!
-        </div>);
+      return (<div>Hello world!</div>);
   }
 }
 ```
@@ -172,15 +146,15 @@ http://localhost:3000/hello-world-purefunction
 # Props
 ## The properties for the component
 ```js
-const Text = (props) => <p style={{ color: props.color }}>Text: {props.children}</p>;
+const Text = (props) => <p style={{ color: props.color }}>Text: {props.text}</p>;
+
+
 
 const ColorfulTexts = (props) => (
   <div>
-      <Text color="red">Red text</Text>
-      <Text color="green">Green text</Text>
-      <Text color="orange" children="Orange text"></Text>
-      <p>Normal text</p>
-      <p style={{color: 'grey'}}>Grey normal text</p>
+      <Text color="red" text="Red text" />
+      <Text color="green" text="Green text" />
+      <Text color="orange" text="Orange text" />
   </div>
 )
 ```
@@ -224,7 +198,7 @@ Use `this.props` to refer the props
 ```js
 class Text extends Component {
   render() {
-    return <p style={{ color: this.props.color }}>Text: {this.props.children}</p>
+    return <p style={{ color: this.props.color }}>Text: {this.props.text}</p>
   }
 }
 ```
@@ -291,10 +265,12 @@ class Counter extends Component {
 http://localhost:3000/counter-click
 
 - Bind `this` for the event handler
-- Refer this page for all events:https://facebook.github.io/react/docs/events.html 
+- Refer this page for all events:  
+  https://facebook.github.io/react/docs/events.html 
 
 ---
 # An example to combine these features
+## props, state, event
 
 http://localhost:3000/counter-buttons
 
@@ -320,7 +296,7 @@ http://localhost:3000/number-controller-final
 ```js
 class Input extends Component {
   changeHanlder(event) {
-    let input = this.refs.input
+    let input = this.refs.myInput
 
     this.setState({
       text: input.value
@@ -330,7 +306,7 @@ class Input extends Component {
   render() {
     return (
       <div>
-        <input ref="input" type="text" onChange={this.changeHanlder} />
+        <input ref="myInput" type="text" onChange={this.changeHanlder} />
         <p>Input: {this.state.text}</p>
       </div>
     )

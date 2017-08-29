@@ -23,6 +23,6 @@ let pages = [
   
   export default () => (
       <ul>
-        {pages.map((page) => <NavLink page={page} />) }
+        { pages.map((page) => <NavLink page={page} />) }
       </ul>
   )

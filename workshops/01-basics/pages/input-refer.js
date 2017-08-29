@@ -12,7 +12,7 @@ class Input extends Component {
   }
 
   changeHanlder(event) {
-    let input = this.refs.input
+    let input = this.refs.myInput
     
     this.setState({
       text: input.value
@@ -21,7 +21,7 @@ class Input extends Component {
   render() {
     return (
       <div>
-        <input ref="input" type="text" onChange={this.changeHanlder} />
+        <input ref="myInput" type="text" onChange={this.changeHanlder} />
         <p>Input: {this.state.text}</p>
       </div>
     )

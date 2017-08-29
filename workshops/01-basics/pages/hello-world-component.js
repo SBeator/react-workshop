@@ -2,9 +2,7 @@ import { Component } from 'react'
 
 class HellWorld extends Component {
   render() {
-      return (<div>
-          Hello world!
-        </div>)
+      return (<div>Hello world!</div>)
   }
 }
 
