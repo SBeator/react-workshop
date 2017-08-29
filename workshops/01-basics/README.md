@@ -134,7 +134,7 @@ class: middle center
 
 ---
 
-# Stepup
+# Prepare code
 ## Clone the sample code from github and start the server
 
 - `git clone git@github.com:SBeator/react-workshop.git`
@@ -313,6 +313,36 @@ http://localhost:3000/number-controller
 
 Example:
 http://localhost:3000/number-controller-final
+
+---
+# Refs
+
+```js
+class Input extends Component {
+  changeHanlder(event) {
+    let input = this.refs.input
+
+    this.setState({
+      text: input.value
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <input ref="input" type="text" onChange={this.changeHanlder} />
+        <p>Input: {this.state.text}</p>
+      </div>
+    )
+  }
+}
+```
+
+- Add attribute "ref" in element
+- Use this.refs.[name] to refer the element
+
+http://localhost:3000/input-refer
+
 ---
 # Array in elements
 
@@ -366,6 +396,7 @@ class: center middle
 - Pure React
   - State
   - Props
+  - Refs
   - Event
 - No style required
 - No DOM operation
