@@ -120,7 +120,7 @@ http://localhost:3000/react-redux-counter-buttons
   - Click to reset the number
 
 From:
-http://localhost:3000/react-redux-counter-new-events-final
+http://localhost:3000/react-redux-counter-new-events
 
 Example:
 http://localhost:3000/react-redux-counter-new-events-final
@@ -154,12 +154,6 @@ const incrementActionAsyncThunk = (dispatch) => {
 http://localhost:3000/react-redux-thunk
 
 ---
-layout: false
-.center[
-![](https://image.slidesharecdn.com/reactjs-redux-160705105436/95/workshop-20-reactjs-part-ii-flux-pattern-redux-6-638.jpg?cb=1467716310)
-]
-
----
 layout: true
 # Redux Middleware
 ---
@@ -187,15 +181,6 @@ const store = createStore(couterReducer, applyMiddleware(thunk, logger))
 ```
 
 http://localhost:3000/react-redux-middleware
-
----
-
-## Logger and Dev Tool
-- https://github.com/evgenyrodionov/redux-logger
-- https://github.com/gaearon/redux-devtools
-- https://github.com/zalmoxisus/redux-devtools-extension
-
-http://localhost:3000/react-redux-counter-debugger
 
 ---
 layout: false
