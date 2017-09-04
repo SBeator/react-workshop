@@ -41,7 +41,7 @@ http://redux.js.org/
 ---
 layout: false
 .center[
-![](http://christianhall.me/redux-101/img/redux-unidir-ui-arch.jpg)
+![](https://image.slidesharecdn.com/reactjs-redux-160705105436/95/workshop-20-reactjs-part-ii-flux-pattern-redux-6-638.jpg?cb=1467716310)
 ]
 ---
 
@@ -156,7 +156,7 @@ http://localhost:3000/react-redux-thunk
 ---
 layout: false
 .center[
-![](http://christianhall.me/redux-101/img/redux-unidir-ui-arch.jpg)
+![](https://image.slidesharecdn.com/reactjs-redux-160705105436/95/workshop-20-reactjs-part-ii-flux-pattern-redux-6-638.jpg?cb=1467716310)
 ]
 
 ---
