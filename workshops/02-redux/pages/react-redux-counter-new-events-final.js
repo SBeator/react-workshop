@@ -2,20 +2,17 @@ import { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider as Redux, connect } from 'react-redux'
 
-const INCREMENT = 'INCREMENT'
-const DECREMENT = 'DECREMENT'
-const DOUBLE = 'DOUBLE'
-const RESET = 'RESET'
-
+// App for button
 const Button = (props) => (
   <div>
     <button onClick={props.onClick}>{props.text}</button>
   </div>
 )
 
+// Container for button
 const IncreaseButtonContainer = connect(
-  state => ({ 
-    text: "Click me to increase the number" 
+  state => ({
+    text: "Click me to increase the number"
   }),
   dispatch => ({
     onClick: () => store.dispatch({ type: INCREMENT })
@@ -49,39 +46,42 @@ const ResetButtonContainer = connect(
   })
 )(Button)
 
+// App for number
+const Text = (props) => <p>{props.text}</p>
 
-class ReduxCounter extends Component {
-  constructor() {
-    super()
-    this.clickHandler = this.clickHandler.bind(this)
-  }
+// Container for number
+const NumberContainer = connect(
+  state => ({
+    text: 'Redux Counter: ' + state.count
+  })
+)(Text)
 
-  clickHandler() {
-    this.props.increase()
-  }
+const DoubleNumberContainer = connect(
+  state => ({
+    text: 'Double number: ' + state.count * 2
+  })
+)(Text)
 
-  render() {
-    return (
-      <div>
-        <p>Redux Counter: {this.props.count}</p>
-        <IncreaseButtonContainer />
-        <DecreaseButtonContainer />
-        <DoubleButtonContainer />
-        <ResetButtonContainer />
-      </div>
-    )
-  }
-}
+// Parent component
+const ReduxCounter = (props) => (
+  <div>
+    <NumberContainer />
+    <DoubleNumberContainer />
+    <IncreaseButtonContainer />
+    <DecreaseButtonContainer />
+    <DoubleButtonContainer />
+    <ResetButtonContainer />
+  </div>
+)
 
-const ReduxCounterContainer = connect(
-  state => state
-)(ReduxCounter)
+// Redux code; 
+const INCREMENT = 'INCREMENT'
+const DECREMENT = 'DECREMENT'
+const DOUBLE = 'DOUBLE'
+const RESET = 'RESET'
 
-
-// Initialize code; 
-
-const initialState = { 
-  count: 0 
+const initialState = {
+  count: 0
 }
 
 const couterReducer = (state = { count: 0 }, action) => {
@@ -91,17 +91,17 @@ const couterReducer = (state = { count: 0 }, action) => {
         count: state.count + 1
       }
     case DECREMENT:
-        return {
-          count: state.count - 1
+      return {
+        count: state.count - 1
       }
     case DOUBLE:
       return {
         count: state.count * 2
-        }
+      }
     case RESET:
-        return {
-          count: 0
-        }
+      return {
+        count: 0
+      }
     default:
       return state
   }
@@ -111,6 +111,6 @@ const store = createStore(couterReducer, initialState)
 
 export default props => (
   <Redux store={store}>
-    <ReduxCounterContainer />
+    <ReduxCounter />
   </Redux>
 )

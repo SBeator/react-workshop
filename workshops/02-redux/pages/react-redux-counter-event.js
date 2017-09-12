@@ -2,35 +2,24 @@ import { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider as Redux, connect } from 'react-redux'
 
-class ReduxCounter extends Component {
-  constructor() {
-    super()
-    this.clickHandler = this.clickHandler.bind(this)
-  }
+// App
+const ReduxCounter = (props) => (
+  <div>
+    <button onClick={props.onclick} >Redux Counter: {props.count}</button>
+  </div>
+)
 
-  clickHandler() {
-    this.props.increase()
-  }
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.clickHandler} >Redux Counter: {this.props.count}</button>
-      </div>
-    )
-  }
-}
-
+// Container
 const ReduxCounterContainer = connect(
-  state => state,
+  state => ({
+    count: state.count
+  }),
   dispatch => ({
-    increase: () => store.dispatch({ type: INCREMENT })
+    onclick: () => store.dispatch({ type: INCREMENT })
   })
 )(ReduxCounter)
 
-
-// Initialize code; 
-
+// Redux code
 const INCREMENT = 'INCREMENT'
 
 const initialState = { count: 0 }

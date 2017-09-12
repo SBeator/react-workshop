@@ -13,8 +13,9 @@ const Button = (props) => (
   </div>
 )
 
+// Simple action
 const incrementAction = { type: INCREMENT }
-const IncreaseButtonContainer1 = connect(
+const IncreaseButtonContainerSimple = connect(
   state => ({
     text: "Click me to increase the number"
   }),
@@ -23,9 +24,9 @@ const IncreaseButtonContainer1 = connect(
   })
 )(Button)
 
-// 
+// Thunk action
 const incrementActionThunk = () => (incrementAction)
-const IncreaseButtonContainer2 = connect(
+const IncreaseButtonContainerThunk = connect(
   state => ({
     text: "Click me to increase the number by thunk"
   }),
@@ -34,13 +35,27 @@ const IncreaseButtonContainer2 = connect(
   })
 )(Button)
 
-// 
+// Thunk action with parameter
+const incrementActionThunkWithParameter = (number) => ({ 
+  type: INCREMENT,
+  number: number
+})
+const IncreaseButtonContainerThunkWithParameter = connect(
+  state => ({
+    text: "Click me to increase the number by thunk"
+  }),
+  dispatch => ({
+    onClick: () => store.dispatch(incrementActionThunkWithParameter(10))
+  })
+)(Button)
+
+// Async thunk action
 const incrementActionAsyncThunk = (dispatch) => {
   setTimeout(() => {
     dispatch(incrementAction)
   }, 1000)
 }
-const IncreaseButtonContainer3 = connect(
+const IncreaseButtonContainerAsyncThunk = connect(
   state => ({
     text: "Click me to increase the number in 2s by thunk"
   }),
@@ -63,9 +78,10 @@ class ReduxCounter extends Component {
     return (
       <div>
         <p>Redux Counter: {this.props.count}</p>
-        <IncreaseButtonContainer1 />
-        <IncreaseButtonContainer2 />
-        <IncreaseButtonContainer3 />
+        <IncreaseButtonContainerSimple />
+        <IncreaseButtonContainerThunk />
+        <IncreaseButtonContainerThunkWithParameter />
+        <IncreaseButtonContainerAsyncThunk />
       </div>
     )
   }
@@ -85,20 +101,9 @@ const initialState = {
 const couterReducer = (state = { count: 0 }, action) => {
   switch (action.type) {
     case INCREMENT:
+      const number = action.number || 1
       return {
-        count: state.count + 1
-      }
-    case DECREMENT:
-      return {
-        count: state.count - 1
-      }
-    case DOUBLE:
-      return {
-        count: state.count * 2
-      }
-    case RESET:
-      return {
-        count: 0
+        count: state.count + number
       }
     default:
       return state

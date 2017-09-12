@@ -2,12 +2,14 @@ import { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider as Redux, connect } from 'react-redux'
 
+// App for button
 const Button = (props) => (
   <div>
     <button onClick={props.onClick}>{props.text}</button>
   </div>
 )
 
+// Container for button
 const IncreaseButtonContainer = connect(
   state => ({ 
     text: "Click me to increase the number" 
@@ -26,7 +28,20 @@ const DecreaseButtonContainer = connect(
   })
 )(Button)
 
+// App for number
+const Text = (props) => <p>{props.text}</p>
 
+// Container for number
+const NumberContainer = connect(
+  state => ({
+    text: 'Redux Counter: ' + state.count
+  }),
+  dispatch => ({
+    onClick: () => store.dispatch({ type: DECREMENT })
+  })
+)(Text)
+
+// Parent component
 class ReduxCounter extends Component {
   constructor() {
     super()
@@ -40,7 +55,7 @@ class ReduxCounter extends Component {
   render() {
     return (
       <div>
-        <p>Redux Counter: {this.props.count}</p>
+        <NumberContainer />
         <IncreaseButtonContainer />
         <DecreaseButtonContainer />
       </div>
@@ -48,13 +63,13 @@ class ReduxCounter extends Component {
   }
 }
 
+// container for parent
 const ReduxCounterContainer = connect(
   state => state
 )(ReduxCounter)
 
 
-// Initialize code; 
-
+// Redux code; 
 const INCREMENT = 'INCREMENT'
 const DECREMENT = 'DECREMENT'
 

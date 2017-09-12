@@ -30,7 +30,6 @@ class: middle
 layout: false
 # Redux
 - State Management
-- Predictable State
 ---
 # Why redux
 
@@ -68,7 +67,10 @@ store.dispatch({ type: 'INCREMENT' })
 
 ```
 
-http://localhost:3000/redux-counter-timer
+http://localhost:3001/redux-counter-timer
+
+Compare with:
+http://localhost:3000/counter-timer in 01-basics
 
 ---
 
@@ -76,10 +78,13 @@ http://localhost:3000/redux-counter-timer
 - Use click event to dispatch 'INCREMENT' action
 
 From:
-http://localhost:3000/redux-counter-event
+http://localhost:3001/redux-counter-event
 
 Example:
-http://localhost:3000/redux-counter-event-final
+http://localhost:3001/redux-counter-event-final
+
+Compare with:
+http://localhost:3000/counter-click in 01-basics
 ---
 
 # React Redux
@@ -103,13 +108,15 @@ ReactDom.render(
 
 ```
 
-http://localhost:3000/react-redux-counter-event
+http://localhost:3001/react-redux-counter-event
 
 ---
 
 # Dispath action anywhere
 
-http://localhost:3000/react-redux-counter-buttons
+http://localhost:3001/react-redux-counter-buttons
+
+Compare with http://localhost:3000/number-controller-final in 01-basics
 
 ---
 # Practice
@@ -118,12 +125,13 @@ http://localhost:3000/react-redux-counter-buttons
 - Two new button:
   - Click to double the number
   - Click to reset the number
+- Show a new number which is the origin number's power
 
 From:
-http://localhost:3000/react-redux-counter-new-events
+http://localhost:3001/react-redux-counter-new-events
 
 Example:
-http://localhost:3000/react-redux-counter-new-events-final
+http://localhost:3001/react-redux-counter-new-events-final
 
 ---
 layout: true
@@ -151,7 +159,7 @@ const incrementActionAsyncThunk = (dispatch) => {
 }
 ```
 
-http://localhost:3000/react-redux-thunk
+http://localhost:3001/react-redux-thunk
 
 ---
 layout: true
@@ -180,7 +188,7 @@ const logger = ({ dispatch, getState }) => next => action => {
 const store = createStore(couterReducer, applyMiddleware(thunk, logger))
 ```
 
-http://localhost:3000/react-redux-middleware
+http://localhost:3001/react-redux-middleware
 
 ---
 layout: false
