@@ -17,7 +17,7 @@ Then you can review the slide in browser by url: http://localhost:9000/
 If you want to review the examples which refered by the slides, please run these command
 
 ```
-cd 01-basics or cd 02-redux
+cd workshops/01-basics or cd workshops/02-redux
 npm install
 npm start
 ```
