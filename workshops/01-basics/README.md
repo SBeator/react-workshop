@@ -44,7 +44,7 @@ class Man extends Person {
   }
 }
 class MyComponent extends React.Component {
-  constructor() {
+  constructor(props) {
 
   }
 }
@@ -172,8 +172,8 @@ const User = (props) => <p>...</p>;
 const UserList = (props) => (
   <div>
     <User /> // Xingxin, 25
-    <User /> // Stef, 18
-    <User /> // Ben, 30
+    <User /> // Zhaoyu, 18
+    <User /> // Shihao, 30
   </div>
 )
 
@@ -182,8 +182,8 @@ export default UserList
 Make sure the output are 3 users like this:
 ```html
 I am Xingxin, I am 25 year old
-I am Stef, I am 18 year old
-I am Ben, I am 30 year old
+I am Zhaoyu, I am 18 year old
+I am Shihao, I am 30 year old
 ```
 Start:
 http://localhost:3000/user
@@ -212,11 +212,12 @@ http://localhost:3000/colorful-text
 
 ```js
 class Counter extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
+  state = {
+    count: 0
+  }
+
+  constructor(props) {
+    super(props)
 
     setInterval(() => {
       let newCount = this.state.count + 1;
@@ -234,24 +235,20 @@ class Counter extends Component {
 
 http://localhost:3000/counter-timer
 
-- Initial state in constructor
+- Initial state at beginning
 - Use `this.setState()` to change state
+- This is just an example, don't follow the same way in real code
 
 ---
 # Event
 
 ```js
 class Counter extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-
-    this.handleClick = this.handleClick.bind(this)
+  state = {
+    count: 0
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState({
       count: this.state.count + 1
     })
@@ -264,7 +261,7 @@ class Counter extends Component {
 ```
 http://localhost:3000/counter-click
 
-- Bind `this` for the event handler
+- Use **Arrow Function** to define event hander function
 - Refer this page for all events:  
   https://facebook.github.io/react/docs/events.html 
 
@@ -316,6 +313,7 @@ class Input extends Component {
 
 - Add attribute "ref" in element
 - Use this.refs.[name] to refer the element
+- Try to avoid use "refs" in code
 
 http://localhost:3000/input-refer
 
@@ -331,35 +329,25 @@ http://localhost:3000/counter-buttons-array
 ---
 # Lifecycle
 
-##Mounting
-These methods are called when an instance of a component is being created and inserted into the DOM:
-
-- constructor()
-- componentWillMount()
-- render()
-- componentDidMount()
-
-##Unmounting
-This method is called when a component is being removed from the DOM:
-
-- componentWillUnmount()
-
-http://localhost:3000/lifecyle
+.center[
+![](https://cdn-images-1.medium.com/max/2000/1*cEWErpe-oY-_S1dOaT1NtA.jpeg)
+]
 
 ---
 # Lifecycle
 
-##Updating
-An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
-
-- componentWillReceiveProps()
-- shouldComponentUpdate()
-- componentWillUpdate()
-- render()
-- componentDidUpdate()
+##Example
+Make sure the increase method will only be ran when the component is mounted
+http://localhost:3000/counter-time-lifecycle
 
 ## Reference
 https://facebook.github.io/react/docs/react-component.html
+
+---
+# Think in react
+
+https://reactjs.org/docs/thinking-in-react.html
+https://chenyitian.gitbooks.io/react-docs/content/docs/thinking-in-react.html
 
 ---
 class: center middle

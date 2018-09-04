@@ -43,12 +43,7 @@ const NumberContainer = connect(
 
 // Parent component
 class ReduxCounter extends Component {
-  constructor() {
-    super()
-    this.clickHandler = this.clickHandler.bind(this)
-  }
-
-  clickHandler() {
+  clickHandler = () => {
     this.props.increase()
   }
 

@@ -17,8 +17,8 @@ const store = createStore(couterReducer, {
 })
 
 export default class ReduxCounter extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       count: 0
     }

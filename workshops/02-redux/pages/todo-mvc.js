@@ -8,23 +8,15 @@ const STATUS = {
 
   
 class Filter extends Component {
-  constructor(props) {
-    super(props)
-
-    this.onFilterAll = this.onFilterAll.bind(this)
-    this.onFilterActive = this.onFilterActive.bind(this)
-    this.onFilterCompleted = this.onFilterCompleted.bind(this)
-  }
-
-  onFilterAll(event) {
+  onFilterAll = () => {
     this.props.filer(STATUS.ALL)
   }
 
-  onFilterActive(event) {
+  onFilterActive = () => {
     this.props.filer(STATUS.ACTIVE)
   }
 
-  onFilterCompleted(event) {
+  onFilterCompleted = () => {
     this.props.filer(STATUS.COMPLETED)
   }
 

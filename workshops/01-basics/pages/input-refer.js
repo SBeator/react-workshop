@@ -1,21 +1,13 @@
 import { Component } from 'react'
 
 class Input extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      text: ''
-    }
-
-    this.changeHanlder = this.changeHanlder.bind(this)
+  state = {
+    text: ''
   }
 
-  changeHanlder(event) {
-    let input = this.refs.myInput
-    
+  changeHanlder = (event) => {
     this.setState({
-      text: input.value
+      text: event.target.value
     })
   }
   render() {

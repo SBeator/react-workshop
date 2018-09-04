@@ -7,16 +7,11 @@ const Counter = (props) => (
 )
 
 class CounterList extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-
-    this.increace = this.increace.bind(this)
+  state = {
+    count: 0
   }
-
-  increace() {
+  
+  increace = () => {
     let newCount = this.state.count + 1
     this.setState({
       count: newCount

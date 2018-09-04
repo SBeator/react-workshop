@@ -1,16 +1,11 @@
 import { Component } from 'react'
 
 class Counter extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-
-    this.handleClick = this.handleClick.bind(this)
+  state = {
+    count: 0
   }
 
-  handleClick() {
+  handleClick = () => {
     let newCount = this.state.count + 1;
     this.setState({
       count: newCount

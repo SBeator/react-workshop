@@ -20,13 +20,8 @@ const initialState = {
 const store = createStore(couterReducer, initialState)
 
 export default class ReduxCounter extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-
-    this.clickHandler = this.clickHandler.bind(this)
+  state = {
+    count: 0
   }
   
   shouldComponentUpdate(nextState, nextProps) {
@@ -42,7 +37,7 @@ export default class ReduxCounter extends Component {
     })
   }
 
-  clickHandler() {
+  clickHandler = () => {
     store.dispatch({ type: INCREMENT })
   }
 

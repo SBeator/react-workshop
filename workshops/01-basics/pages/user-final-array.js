@@ -16,15 +16,13 @@ const UserList = (props) => {
     }
   ]
 
-  let usersElement = [];
+  const usersElement = users.map((user) => (<User key={user.name} name={user.name} age={user.age} />))
 
-  for (let i = 0; i < users.length; i++) {
-    let user = users[i];
-    usersElement.push(<User key={user.name} name={user.name} age={user.age} />)
-  }
-
-  // We can replace the loop with this line:
-  // let usersElement = users.map((user) => (<User key={user.name} name={user.name} age={user.age} />))
+  // const usersElement = [
+  //   <User name="Xingxin" age="25" key="Xingxin" />,
+  //   <User name="Zhaoyu" age="18" key="Zhaoyu" />,
+  //   <User name="Shihao" age="30" key="Shihao" />
+  // ]
 
   return (
     <div>

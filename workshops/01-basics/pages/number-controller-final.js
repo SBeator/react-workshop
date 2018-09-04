@@ -7,41 +7,28 @@ const Controller = (props) => (
 )
 
 class NumberController extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-
-    this.increace = this.increace.bind(this)
-    this.decrease = this.decrease.bind(this)
-    this.double = this.double.bind(this)
-    this.reset = this.reset.bind(this)
+  state = {
+    count: 0
   }
 
-  increace() {
-    let newCount = this.state.count + 1
-    this.setState({
-      count: newCount
-    })
+  increace = () => {
+    this.setNewCount(this.state.count + 1)
   }
 
-  decrease() {
-    let newCount = this.state.count - 1
-    this.setState({
-      count: newCount
-    })
+  decrease = () => {
+    this.setNewCount(this.state.count - 1)
+
   }
 
-  double() {
-    let newCount = this.state.count * 2
-    this.setState({
-      count: newCount
-    })
+  double = () => {
+    this.setNewCount(this.state.count * 2)
   }
 
-  reset() {
-    let newCount = 0
+  reset = () => {
+    this.setNewCount(0)
+  }
+
+  setNewCount(newCount) {
     this.setState({
       count: newCount
     })

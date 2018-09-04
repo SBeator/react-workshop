@@ -7,30 +7,25 @@ const Counter = (props) => (
 )
 
 class CounterList extends Component {
-  constructor() {
-    super()
-    this.increace = this.increace.bind(this)
-    
-    this.state = {
-      count: 0,
-      counters: [
-        {
-          clickHandler: this.increace,
-          text: "First counter"
-        },
-        {
-          clickHandler: this.increace,
-          text: "Second counter"
-        },
-        {
-          clickHandler: this.increace,
-          text: "Click me"
-        },
-      ]
-    }
+  state = {
+    count: 0,
+    counters: [
+      {
+        clickHandler: this.increace,
+        text: "First counter"
+      },
+      {
+        clickHandler: this.increace,
+        text: "Second counter"
+      },
+      {
+        clickHandler: this.increace,
+        text: "Click me"
+      },
+    ]
   }
 
-  increace() {
+  increace = () => {
     let newCount = this.state.count + 1
     this.setState({
       count: newCount
@@ -38,17 +33,7 @@ class CounterList extends Component {
   }
 
   getCounterElements() {
-    let counterElements = [];
-    for(let i = 0; i < this.state.counters.length; i++) {
-      let counter = this.state.counters[i];
-
-      counterElements.push(<Counter key={counter.text} clickHandler={counter.clickHandler} text={counter.text} />)
-    }
-
-    return counterElements
-
-    // Can replace this method with below simple way:
-    // return this.state.counters.map((counter) => <Counter key={counter.text} clickHandler={counter.clickHandler} text={counter.text} />)
+    return this.state.counters.map((counter) => <Counter key={counter.text} clickHandler={counter.clickHandler} text={counter.text} />)
   }
 
   render() {
