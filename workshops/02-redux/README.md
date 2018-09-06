@@ -30,12 +30,22 @@ class: middle
 layout: false
 # Redux
 - State Management
+
+http://redux.js.org/
+
+---
+# How to manage status?
+
+- State
+- Props
+- Refs
+- Event
+
 ---
 # Why redux
 
-https://css-tricks.com/learning-react-redux/
+![](https://css-tricks.com/wp-content/uploads/2016/03/redux-article-3-03.svg)
 
-http://redux.js.org/
 
 ---
 layout: false
@@ -189,6 +199,65 @@ const store = createStore(couterReducer, applyMiddleware(thunk, logger))
 ```
 
 http://localhost:3001/react-redux-middleware
+---
+layout: true
+# Painful in redux
+---
+
+- Lots of template code
+- Complex in async programing
+```js
+const couterReducer = (state = { count: 0 }, action) => {
+  switch (action.type) {
+    case INCREMENT:
+      return {
+        count: state.count + 1
+      }
+    case DECREMENT:
+      return {
+        count: state.count - 1
+      }
+    default:
+      return state
+  }
+}
+```
+```js
+const IncreaseButtonContainerAsyncThunk = connect(
+  state => ({
+    text: "Click me to increase the number in 2s by thunk"
+  }),
+  dispatch => ({
+    onClick: () => incrementActionAsyncThunk(store.dispatch)
+  })
+)(Button)
+```
+
+---
+layout: true
+# Rematch
+---
+https://rematch.gitbooks.io/rematch/#getting-started 
+```js
+export const count = {
+  state: 0, // initial state
+  reducers: {
+    // handle state changes with pure functions
+    increment(state) {
+      return state + 1
+    }
+  },
+  effects: (dispatch) => ({
+    // handle state changes with impure functions.
+    // use async/await for async actions
+    async incrementAsync(payload, rootState) {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      dispatch.count.increment(payload)
+    }
+  })
+}
+```
+http://localhost:3001/react-redux-counter-new-events-remarch
 
 ---
 layout: false

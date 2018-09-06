@@ -13,11 +13,9 @@ const couterReducer = (state = { count : 0 }, action) => {
   }
 }
 
-const initialState = {
+const store = createStore(couterReducer, {
   count: 0
-}
-
-const store = createStore(couterReducer, initialState)
+})
 
 export default class ReduxCounter extends Component {
   state = {

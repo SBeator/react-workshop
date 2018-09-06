@@ -32,13 +32,7 @@ class Filter extends Component {
 }
 
 class TodoInput extends Component {
-  constructor(props) {
-    super(props) 
-
-    this.onKeyPress = this.onKeyPress.bind(this)
-  }
-
-  onKeyPress(event) {
+  onKeyPress = (event) => {
     if (event.key === 'Enter') {
       let inputValue = this.refs.todoInput.value
       this.props.handleEnter(inputValue)
@@ -52,18 +46,11 @@ class TodoInput extends Component {
 }
 
 class Todo extends Component {
-  constructor(props) {
-    super(props)
-
-    this.onClickDeleteButton = this.onClickDeleteButton.bind(this)
-    this.onClickComplete = this.onClickComplete.bind(this)
-  }
-
-  onClickDeleteButton() {
+  onClickDeleteButton = () => {
     this.props.deleteTodo(this.props.index)
   }
 
-  onClickComplete() {
+  onClickComplete = () => {
     this.props.completeTodo(this.props.index, this.refs.completed.checked)
   }
 
@@ -79,21 +66,9 @@ class Todo extends Component {
 }
 
 class TodoMvc extends Component {
-
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      todos: [],
-      filter: STATUS.ALL
-    }
-
-    this.addTodo = this.addTodo.bind(this)
-    this.deleteTodo = this.deleteTodo.bind(this)
-    this.completeTodo = this.completeTodo.bind(this)
-    this.filterStatus = this.filterStatus.bind(this)
-    this.selectAll = this.selectAll.bind(this)
+  state = {
+    todos: [],
+    filter: STATUS.ALL
   }
 
   getListElements() {
@@ -121,7 +96,7 @@ class TodoMvc extends Component {
     return this.state.todos.filter((todo) => todo.status === STATUS.ACTIVE).length
   }
 
-  addTodo(todoText) {
+  addTodo = (todoText) => {
     this.setState({
       todos: this.state.todos.concat({
         text: todoText,
@@ -130,7 +105,7 @@ class TodoMvc extends Component {
     })
   }
 
-  deleteTodo(index) {
+  deleteTodo = (index) => {
     let todos = this.state.todos.slice()
     todos.splice(index, 1)
 
@@ -139,7 +114,7 @@ class TodoMvc extends Component {
     })
   }
 
-  completeTodo(index, isCompleted) {
+  completeTodo = (index, isCompleted) => {
     let todos = this.state.todos.slice()
 
     todos[index].status = isCompleted ? STATUS.COMPLETED : STATUS.ACTIVE
@@ -149,14 +124,13 @@ class TodoMvc extends Component {
     })
   }
 
-  filterStatus(status) {
+  filterStatus = (status) => {
     this.setState({
       filter: status
     })
   }
 
-  selectAll() {
-    console.log('11111')
+  selectAll = () => {
     let isSelectAll = this.state.todos.find((todo) => todo.status == STATUS.ACTIVE)
     let selectStatus = isSelectAll ? STATUS.COMPLETED : STATUS.ACTIVE
     let todos = this.state.todos.map(todo => {
